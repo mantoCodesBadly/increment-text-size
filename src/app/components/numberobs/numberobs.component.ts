@@ -8,11 +8,13 @@ import { map, startWith, scan } from 'rxjs/operators';
     styleUrls: ['./numberobs.component.scss'],
 })
 export class NumberObsComponent {
+
+    //unico problema: non funziona getElementById per qualche motivo :(
     incrementClick$ = fromEvent(
         document /*.getElementById("#increment") as HTMLButtonElement*/,
         'click'
     ).pipe(
-        map((event) => +1),
+        map((event) => 1),
         scan((acc, incr) => acc + incr)
     );
     numToDisplay: number;
@@ -20,6 +22,6 @@ export class NumberObsComponent {
     constructor() {
         this.numToDisplay = 0;
         this.incrementClick$.subscribe((value) => (this.numToDisplay = value));
-        console.log(document.getElementById('increment') as HTMLElement);
+        console.log(document.getElementById("increment"));
     }
 }
